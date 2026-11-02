@@ -1,0 +1,27 @@
+{
+  "name": "cybershield-backend",
+  "version": "1.0.0",
+  "description": "CyberShield Incident Response & Tracking REST API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "incident-response",
+    "cybersecurity",
+    "jwt",
+    "mysql",
+    "rbac"
+  ],
+  "author": "CyberShield Team",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.19.1"
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Cyber Admin",
+      "email": "admin@cybershield.org",
+      "password": "$2b$10$j/uaLDt./XZ6dDavnqsvk.RXBsSLox3G3xwHbaVo.PR7RBJMUd2q6",
+      "role": "admin",
+      "department": "Security Operations (SOC)",
+      "created_at": "2026-10-28T17:11:42.629Z"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Chen (Analyst)",
+      "email": "sarah.analyst@cybershield.org",
+      "password": "$2b$10$j/uaLDt./XZ6dDavnqsvk.RXBsSLox3G3xwHbaVo.PR7RBJMUd2q6",
+      "role": "analyst",
+      "department": "Threat Intelligence & Response",
+      "created_at": "2026-10-28T17:11:42.631Z"
+    },
+    {
+      "id": 3,
+      "name": "Alex Rivera (Analyst)",
+      "email": "alex.analyst@cybershield.org",
+      "password": "$2b$10$j/uaLDt./XZ6dDavnqsvk.RXBsSLox3G3xwHbaVo.PR7RBJMUd2q6",
+      "role": "analyst",
+      "department": "Incident Triage",
+      "created_at": "2026-10-28T17:11:42.631Z"
+    },
+    {
+      "id": 4,
+      "name": "David Miller (Employee)",
+      "email": "david.miller@company.com",
+      "password": "$2b$10$j/uaLDt./XZ6dDavnqsvk.RXBsSLox3G3xwHbaVo.PR7RBJMUd2q6",
+      "role": "employee",
+      "department": "Finance & Accounting",
+      "created_at": "2026-10-29T17:11:42.631Z"
+    },
+    {
+      "id": 5,
+      "name": "Emily Blunt (Employee)",
+      "email": "emily.blunt@company.com",
+      "password": "$2b$10$j/uaLDt./XZ6dDavnqsvk.RXBsSLox3G3xwHbaVo.PR7RBJMUd2q6",
+      "role": "employee",
+      "department": "Human Resources",
+      "created_at": "2026-10-30T17:11:42.631Z"
+    }
+  ],
+  "incidents": [
+    {
+      "id": 1,
+      "tracking_id": "CS-2026-0001",
+      "title": "Suspicious Spear-Phishing Email impersonating Payroll",
+      "description": "Multiple employees in Finance received emails claiming to be from HR requesting immediate login to an external portal to update tax information.",
+      "incident_type": "Phishing",
+      "severity": "High",
+      "status": "Under Investigation",
+      "reporter_id": 4,
+      "assigned_to": 2,
+      "impacted_systems": "Mail Server Exchange, Workstation WS-FIN-04",
+      "mitre_technique": "T1566.002 - Spearphishing Link",
+      "evidence_metadata": "{\"sender_ip\":\"198.51.100.23\",\"domain\":\"secure-payro11-update.com\",\"hash_sha256\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}",
+      "containment_actions": "Blocked domain on DNS sinkhole and quarantined 14 identical messages across the mail gateway.",
+      "root_cause": "Publicly exposed employee email list exploited by external threat actor.",
+      "resolution_summary": null,
+      "created_at": "2026-10-29T17:11:42.631Z",
+      "updated_at": "2026-10-29T21:11:42.631Z",
+      "resolved_at": null
+    },
+    {
+      "id": 2,
+      "tracking_id": "CS-2026-0002",
+      "title": "Critical Ransomware Artifact Detected on Backup Storage",
+      "description": "Endpoint detection alert on backup NAS storage server identified encrypted file headers and a text ransom note titled RESTORE_DATA.txt.",
+      "incident_type": "Ransomware",
+      "severity": "Critical",
+      "status": "Contained",
+      "reporter_id": 1,
+      "assigned_to": 2,
+      "impacted_systems": "NAS Storage Pool B, Subnet 10.0.4.0/24",
+      "mitre_technique": "T1486 - Data Encrypted for Impact",
+      "evidence_metadata": "{\"affected_volume\":\"/vol/backup_daily\",\"ransom_note\":\"RESTORE_DATA.txt\",\"c2_ip\":\"203.0.113.88\"}",
+      "containment_actions": "Isolated the NAS host network interface and severed SMB shares immediately. Restoring from immutable offline snapshot.",
+      "root_cause": "Compromised service account credentials with elevated write privileges.",
+      "resolution_summary": null,
+      "created_at": "2026-10-30T17:11:42.631Z",
+      "updated_at": "2026-10-30T23:11:42.631Z",
+      "resolved_at": null
+    },
+    {
+      "id": 3,
+      "tracking_id": "CS-2026-0003",
+      "title": "Brute Force SSH Attempts on Customer Gateway",
+      "description": "Automated firewall logs reported over 45,000 failed SSH authentication attempts from a rotating botnet IP range targeting root account.",
+      "incident_type": "Unauthorized Access",
+      "severity": "Medium",
+      "status": "Resolved",
+      "reporter_id": 3,
+      "assigned_to": 3,
+      "impacted_systems": "Edge Router GW-01, SSH Bastion",
+      "mitre_technique": "T1110.001 - Password Guessing",
+      "evidence_metadata": "{\"source_subnets\":[\"185.220.101.0/24\",\"45.154.255.0/24\"],\"targeted_user\":\"root\"}",
+      "containment_actions": "Implemented aggressive Fail2Ban drop policy and disabled password authentication in favor of ED25519 keys.",
+      "root_cause": "Legacy gateway port 22 exposed directly to public internet without rate limiting.",
+      "resolution_summary": "SSH password auth removed entirely; bastion moved behind corporate VPN tunnel.",
+      "created_at": "2026-10-28T17:11:42.631Z",
+      "updated_at": "2026-10-31T05:11:42.631Z",
+      "resolved_at": "2026-10-31T05:11:42.631Z"
+    },
+    {
+      "id": 4,
+      "tracking_id": "CS-2026-0004",
+      "title": "Unauthorized Bulk Data Export from Customer Database",
+      "description": "Anomalous database query volume detected outside business hours downloading 85,000 customer contact records.",
+      "incident_type": "Data Breach",
+      "severity": "Critical",
+      "status": "In Triage",
+      "reporter_id": 2,
+      "assigned_to": null,
+      "impacted_systems": "Customer-DB-Primary (Port 3306), API Gateway",
+      "mitre_technique": "T1530 - Data from Cloud Storage Object",
+      "evidence_metadata": "{\"records_extracted\":85000,\"query_signature\":\"SELECT * FROM customers WHERE 1=1\"}",
+      "containment_actions": "Revoked API keys for the calling client service and terminated active database sessions.",
+      "root_cause": null,
+      "resolution_summary": null,
+      "created_at": "2026-10-31T13:11:42.631Z",
+      "updated_at": "2026-10-31T13:11:42.631Z",
+      "resolved_at": null
+    },
+    {
+      "id": 5,
+      "tracking_id": "CS-2026-0005",
+      "title": "Workstation Sluggishness & Unrecognized Background Miner",
+      "description": "Employee reported machine fan spinning continuously. Task Manager shows an unrecognized binary \"win_svc_updater.exe\" consuming 99% GPU.",
+      "incident_type": "Malware",
+      "severity": "Low",
+      "status": "Reported",
+      "reporter_id": 5,
+      "assigned_to": null,
+      "impacted_systems": "Workstation WS-HR-09",
+      "mitre_technique": "T1496 - Resource Hijacking",
+      "evidence_metadata": "{\"file_path\":\"C:\\\\ProgramData\\\\win_svc_updater.exe\",\"process_id\":4812}",
+      "containment_actions": null,
+      "root_cause": null,
+      "resolution_summary": null,
+      "created_at": "2026-10-31T16:11:42.631Z",
+      "updated_at": "2026-10-31T16:11:42.631Z",
+      "resolved_at": null
+    }
+  ],
+  "incident_timeline": [
+    {
+      "id": 1,
+      "incident_id": 1,
+      "user_id": 4,
+      "action_type": "REPORT_CREATED",
+      "note": "Incident submitted by reporter via web portal.",
+      "previous_state": null,
+      "new_state": "Reported",
+      "created_at": "2026-10-29T17:11:42.631Z"
+    },
+    {
+      "id": 2,
+      "incident_id": 1,
+      "user_id": 1,
+      "action_type": "ASSIGNMENT",
+      "note": "Admin assigned incident to SOC Analyst Sarah Chen.",
+      "previous_state": null,
+      "new_state": "Assigned to Sarah Chen",
+      "created_at": "2026-10-29T19:11:42.631Z"
+    },
+    {
+      "id": 3,
+      "incident_id": 1,
+      "user_id": 2,
+      "action_type": "STATUS_CHANGE",
+      "note": "Triaged incident to Under Investigation. Domain blacklisted on DNS sinkhole.",
+      "previous_state": "Reported",
+      "new_state": "Under Investigation",
+      "created_at": "2026-10-29T21:11:42.631Z"
+    },
+    {
+      "id": 4,
+      "incident_id": 2,
+      "user_id": 1,
+      "action_type": "REPORT_CREATED",
+      "note": "Critical alert escalated from NAS monitoring system.",
+      "previous_state": null,
+      "new_state": "Reported",
+      "created_at": "2026-10-30T17:11:42.631Z"
+    },
+    {
+      "id": 5,
+      "incident_id": 2,
+      "user_id": 2,
+      "action_type": "STATUS_CHANGE",
+      "note": "Isolated storage host from corporate VLAN. Threat contained.",
+      "previous_state": "In Triage",
+      "new_state": "Contained",
+      "created_at": "2026-10-30T23:11:42.631Z"
+    },
+    {
+      "id": 6,
+      "incident_id": 3,
+      "user_id": 3,
+      "action_type": "RESOLUTION",
+      "note": "Hardened SSH configuration, migrated port to VPN-only access.",
+      "previous_state": "Under Investigation",
+      "new_state": "Resolved",
+      "created_at": "2026-10-31T05:11:42.631Z"
+    }
+  ],
+  "audit_logs": [],
+  "auditLogs": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "user_email": "admin@cybershield.org",
+      "user_role": "admin",
+      "action": "SYSTEM_INITIALIZED",
+      "ip_address": "127.0.0.1",
+      "details": "CyberShield incident tracking system initialized successfully.",
+      "created_at": "2026-10-28T17:11:42.631Z"
+    },
+    {
+      "id": 2,
+      "user_id": 4,
+      "user_email": "david.miller@company.com",
+      "user_role": "employee",
+      "action": "INCIDENT_SUBMISSION",
+      "ip_address": "192.168.1.45",
+      "details": "Submitted incident CS-2026-0001 (Spear-phishing)",
+      "created_at": "2026-10-29T17:11:42.631Z"
+    },
+    {
+      "id": 3,
+      "user_id": 2,
+      "user_email": "sarah.analyst@cybershield.org",
+      "user_role": "analyst",
+      "action": "INCIDENT_STATUS_UPDATE",
+      "ip_address": "192.168.1.10",
+      "details": "Updated CS-2026-0001 status to Under Investigation",
+      "created_at": "2026-10-29T21:11:42.631Z"
+    }
+  ]
+}

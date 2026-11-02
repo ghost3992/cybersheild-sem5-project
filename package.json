@@ -1,0 +1,16 @@
+{
+  "name": "cybershield-project",
+  "version": "1.0.0",
+  "description": "CyberShield - Cybersecurity Incident Reporting & Tracking System (Full Stack-II)",
+  "scripts": {
+    "start": "node backend/server.js",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"cyan,magenta\" \"npm run backend\" \"npm run frontend\"",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
+
